@@ -69,6 +69,26 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 		</dependency>
+
+		<!-- adding dependencies required-->
+
+		<!-- for Jasper reports -->
+	<!--	<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.20.1</version>
+		</dependency>-->
+		<!-- for sending email -->
+		<!--<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency> -->
+		<!-- for slack message-->
+	<!--	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency> -->
+
 	</dependencies>
 
 	<build>

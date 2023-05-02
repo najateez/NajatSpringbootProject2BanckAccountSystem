@@ -20,8 +20,8 @@ public class Account {
     private Double balance;
     private String accountType;
 
-    @OneToMany(mappedBy = "account") //one account, many transactions
-    private List<Transactions> transactions;
+ /*   @OneToMany(mappedBy = "account") //one account, many transactions
+    private List<Transactions> transactions; */
     @ManyToOne //many accounts, one customer
     @JoinColumn(name= "customer_id" , referencedColumnName = "id")
     Customer customer;

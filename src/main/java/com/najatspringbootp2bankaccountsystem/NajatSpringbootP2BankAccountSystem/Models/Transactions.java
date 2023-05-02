@@ -3,9 +3,11 @@ package com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSyste
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,7 +19,8 @@ public class Transactions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double transactionAmount;
-    private LocalDate transactionDate;
+    @UpdateTimestamp
+    private Date transactionDate;
 
     @ManyToOne //many transactions, one account
     @JoinColumn(name= "account_id" , referencedColumnName = "id")
