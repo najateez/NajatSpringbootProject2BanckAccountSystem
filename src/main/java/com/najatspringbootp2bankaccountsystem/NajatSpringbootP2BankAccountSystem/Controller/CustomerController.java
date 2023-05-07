@@ -72,31 +72,46 @@ public class CustomerController { //-> to handle http request
 
     //5.View the status of their loan or credit card application. if active or inActive.
     //getStatusAllActiveLoans.
+    //exp: localhost:8080/customer/getStatusAllActiveLoans
     @RequestMapping(value = "customer/getStatusAllActiveLoans")
     public List<Loan> getStatusAllActiveLoans() {
         List<Loan> activeLoanList = customerService.getStatusAllActiveLoans();
         return activeLoanList;
     }
 
-    // getAllNotActiveLoans :-
+    // getStatusAllNotActiveLoans :-
+    //exp: localhost:8080/customer/getStatusAllInActiveLoans
     @RequestMapping(value = "customer/getStatusAllInActiveLoans")
     public List<Loan> getStatusAllInActiveLoans() {
         List<Loan> notActiveLoanList = customerService.getStatusAllInActiveLoans();
         return notActiveLoanList;
     }
 
- /*   @RequestMapping(value = "customer/getStatusAllActiveCreditCard")
+    //getStatusAllActiveCreditCard
+    //exp: localhost:8080/customer/getStatusAllActiveCreditCard
+    @RequestMapping(value = "customer/getStatusAllActiveCreditCard")
     public List<CreditCard> getStatusAllActiveCreditCard() {
         List<CreditCard> activeCreditCardList = customerService.getStatusAllActiveCreditCard();
         return activeCreditCardList;
-    }*/
+    }
 
-    // getAllNotActiveLoans :-
-/*    @RequestMapping(value = "customer/getStatusAllInActiveCreditCard")
+    // getStatusAllNotActiveCreditCards :-
+    //exp: localhost:8080/customer/getStatusAllInActiveCreditCard
+    @RequestMapping(value = "customer/getStatusAllInActiveCreditCard")
     public List<CreditCard> getStatusAllInActiveCreditCard() {
         List<CreditCard> notActiveCreditCardList = customerService.getStatusAllInActiveCreditCard();
         return notActiveCreditCardList;
-    }*/
+    }
+
+    //6.Retrieve the customer's transaction history across all their accounts.
+    //exp: localhost:8080/customer/getTransactionsByCustomerId?customerId=1
+    /* you will write any customer id from transactions table, then will show full record information
+       from transactions table, then account table, then customer table. (fk).
+     */
+    @GetMapping("customer/getTransactionsByCustomerId")
+    public List<Transactions> getTransactionsByCustomerId(@RequestParam Integer customerId) {
+        return customerService.getTransactionsByCustomerId(customerId);
+    }
 
 }
 

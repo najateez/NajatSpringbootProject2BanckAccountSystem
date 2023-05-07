@@ -86,12 +86,21 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency> -->
 
+
       <!-- for NotFoundException -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
+			<artifactId>javax.ws.rs-api</artifactId>-->
 			<!--<version>2.1.1</version>-->
-		</dependency>
+		<!--</dependency> -->
+
+
+
+      <!-- for spring security -->
+	<!--	<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency> -->
 
 	</dependencies>
 

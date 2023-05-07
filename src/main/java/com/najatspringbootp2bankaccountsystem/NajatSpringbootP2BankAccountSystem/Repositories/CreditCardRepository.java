@@ -16,11 +16,11 @@ public interface CreditCardRepository extends CrudRepository<CreditCard, Integer
 
     //5.View the status of their loan or credit card application, if active or inActive.
     //getStatusAllActiveCreditCard
- /*   @Query(value = "SELECT s from Credit_Card s where s.status = true")
+    @Query(value = "SELECT s from CreditCard s where s.status = true")
     List<CreditCard> getStatusAllActiveCreditCard();
 
     //getStatusAllNotActiveCreditCard :-
-    @Query(value = "SELECT s from Credit_Card s where s.status = false")
-    List<CreditCard> getStatusAllInActiveCreditCard(); */
+    @Query(value = "SELECT s from CreditCard s where s.status = false")
+    List<CreditCard> getStatusAllInActiveCreditCard();
 
 }

@@ -51,7 +51,7 @@ public class AccountController {
     //full record of account id entered will appear with (fk) transaction and customer.
     //exp: localhost:8080/account/getAccountHistory?id=1
     @GetMapping("account/getAccountHistory")
-    public List<Transactions> getAccountHistory(@RequestParam Integer id) {
+    public List<Transactions> getAccountHistory(@RequestParam Integer id) throws Exception {
         return accountService.getAccountHistory(id);
     }
 

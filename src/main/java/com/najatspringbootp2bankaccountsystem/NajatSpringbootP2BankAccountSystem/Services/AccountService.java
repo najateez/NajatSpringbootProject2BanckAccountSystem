@@ -8,11 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.ws.rs.NotFoundException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +44,7 @@ public class AccountService {
 
     //6.Retrieve the account history, including all transactions.
     //getAllTransactionsByAccountId
-    public List<Transactions> getAccountHistory(@RequestParam Integer accountId) { //from transactionsRepository
+    public List<Transactions> getAccountHistory(@RequestParam Integer accountId) throws Exception { //from transactionsRepository
 
         Optional<Account> accountOptional = accountRepository.findById(accountId); //from accountRepository
 
@@ -60,7 +56,7 @@ public class AccountService {
             Account account = accountOptional.get();
             return transactionsRepository.findByAccountId(account.getId());
         } else {
-            throw new NotFoundException("Account not found with id: " + accountId);
+            throw new Exception("Account not found with id: " + accountId);
         }
     }
 

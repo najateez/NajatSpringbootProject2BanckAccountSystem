@@ -68,15 +68,20 @@ public class CustomerService {
     }
 
     //getStatusAllActiveCreditCard.
- /*   public List<CreditCard> getStatusAllActiveCreditCard() {
+    public List<CreditCard> getStatusAllActiveCreditCard() {
 
         return creditCardRepository.getStatusAllActiveCreditCard();
-    }*/
+    }
 
-    // getAllNotActiveLoans :-
-  /*  public List<CreditCard> getStatusAllInActiveCreditCard() {
+    // getAllNotActiveCreditCard :-
+    public List<CreditCard> getStatusAllInActiveCreditCard() {
 
         return creditCardRepository.getStatusAllInActiveCreditCard();
-    } */
+    }
+
+    //6.Retrieve the customer's transaction history across all their accounts.
+    public List<Transactions> getTransactionsByCustomerId(Integer customerId) {
+        return transactionsRepository.findByAccountId(customerId);
+    }
 
 }

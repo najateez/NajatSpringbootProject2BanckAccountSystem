@@ -19,9 +19,15 @@ import java.util.List;
 @Repository
 public interface TransactionsRepository extends CrudRepository<Transactions, Integer> {
 
-    //6. Retrieve the account history, including all transactions. (for account entity)
+    //6. Retrieve the account history, including all transactions. (for account entity) + 3.Retrieve all transactions for a specific account
     //getAllTransactionsByAccountId
     List<Transactions> findByAccountId(Integer accountId);
+
+    //2.Retrieve the details of a specific transaction.
+    Transactions findById(int transactionId);
+
+
+    
 }
 
 
