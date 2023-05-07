@@ -17,6 +17,7 @@ public class CreditCard {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
     private Long CreditCardNumber;
+    private Boolean status;
 
     @ManyToOne //many creditcard, one customer
     @JoinColumn(name= "customer_id" , referencedColumnName = "id")

@@ -6,6 +6,7 @@ import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Services.CustomerService;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Services.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
@@ -69,8 +70,33 @@ public class CustomerController { //-> to handle http request
         return creditCardService.applyForCreditCard(customerId, creditCard.getCreditCardNumber());
     }
 
+    //5.View the status of their loan or credit card application. if active or inActive.
+    //getStatusAllActiveLoans.
+    @RequestMapping(value = "customer/getStatusAllActiveLoans")
+    public List<Loan> getStatusAllActiveLoans() {
+        List<Loan> activeLoanList = customerService.getStatusAllActiveLoans();
+        return activeLoanList;
+    }
 
+    // getAllNotActiveLoans :-
+    @RequestMapping(value = "customer/getStatusAllInActiveLoans")
+    public List<Loan> getStatusAllInActiveLoans() {
+        List<Loan> notActiveLoanList = customerService.getStatusAllInActiveLoans();
+        return notActiveLoanList;
+    }
 
+ /*   @RequestMapping(value = "customer/getStatusAllActiveCreditCard")
+    public List<CreditCard> getStatusAllActiveCreditCard() {
+        List<CreditCard> activeCreditCardList = customerService.getStatusAllActiveCreditCard();
+        return activeCreditCardList;
+    }*/
+
+    // getAllNotActiveLoans :-
+/*    @RequestMapping(value = "customer/getStatusAllInActiveCreditCard")
+    public List<CreditCard> getStatusAllInActiveCreditCard() {
+        List<CreditCard> notActiveCreditCardList = customerService.getStatusAllInActiveCreditCard();
+        return notActiveCreditCardList;
+    }*/
 
 }
 

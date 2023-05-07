@@ -17,6 +17,7 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double loanAmount;
+    private Boolean status;
 
     @ManyToOne //many loan, one customer
     @JoinColumn(name= "customer_id" , referencedColumnName = "id")

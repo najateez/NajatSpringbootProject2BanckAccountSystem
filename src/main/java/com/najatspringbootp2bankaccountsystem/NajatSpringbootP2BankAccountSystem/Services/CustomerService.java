@@ -1,12 +1,8 @@
 package com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Services;
 
 
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Account;
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Customer;
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Transactions;
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Repositories.AccountRepository;
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Repositories.CustomerRepository;
-import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Repositories.TransactionsRepository;
+import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.*;
+import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +21,10 @@ public class CustomerService {
     AccountRepository accountRepository;
     @Autowired
     TransactionsRepository transactionsRepository;
+    @Autowired
+    LoanRepository loanRepository;
+    @Autowired
+    CreditCardRepository creditCardRepository;
 
 
     // 1.Create a new account for a customer.
@@ -54,11 +54,29 @@ public class CustomerService {
         return accounts;
     }
 
+    //5.View the status of their loan or credit card application, if active or inActive.
+    //getStatusAllActiveLoans.
+    public List<Loan> getStatusAllActiveLoans() {
 
+        return loanRepository.getStatusAllActiveLoans();
+    }
 
+    // getAllNotActiveLoans :-
+    public List<Loan> getStatusAllInActiveLoans() {
 
+        return loanRepository.getStatusAllInActiveLoans();
+    }
 
+    //getStatusAllActiveCreditCard.
+ /*   public List<CreditCard> getStatusAllActiveCreditCard() {
 
+        return creditCardRepository.getStatusAllActiveCreditCard();
+    }*/
 
+    // getAllNotActiveLoans :-
+  /*  public List<CreditCard> getStatusAllInActiveCreditCard() {
+
+        return creditCardRepository.getStatusAllInActiveCreditCard();
+    } */
 
 }
