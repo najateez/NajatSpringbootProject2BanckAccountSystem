@@ -12,15 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface CustomerRepository extends CrudRepository<Customer, Integer> {
+@Repository //-> to retrieve customer data from the database
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
-    // Update the customer information, such as their email or phone number.
+    //3. Update the customer information, such as their email or phone number.
     @Modifying
     @Transactional
     @Query(value = "UPDATE Customer s SET s.name=:name, phoneNumber=:phoneNumber, email=:email WHERE s.id =:id")
     void getUpdateCustomerById(@Param("id") Integer id, @Param("name") String name, @Param("phoneNumber") Integer phoneNumber, @Param("email") String email);
 }
+
 
 

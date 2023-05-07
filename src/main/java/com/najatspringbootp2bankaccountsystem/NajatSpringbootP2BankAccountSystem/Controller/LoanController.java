@@ -16,7 +16,7 @@ public class LoanController {
     @Autowired
     LoanService loanService;
 
-    //Create a new loan application for a customer.
+    //1.Create a new loan application for a customer.
     //exp: localhost:8080/loan/createANewLoan?loanAmount=77.3
     @RequestMapping(value = "loan/createANewLoan", method = RequestMethod.POST)
     public void createANewLoan(@RequestParam Double loanAmount) {

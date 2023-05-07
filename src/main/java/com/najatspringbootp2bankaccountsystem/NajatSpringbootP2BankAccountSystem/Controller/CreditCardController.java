@@ -17,7 +17,7 @@ public class CreditCardController {
     @Autowired
     CreditCardService creditCardService;
 
-    // Create a new credit card application for a customer.
+    //1.Create a new credit card application for a customer.
     //insert CreditCard
     //exp: localhost:8080/creditCard/createANewCreditCard?creditCardNumber=4645657575
     @RequestMapping(value = "creditCard/createANewCreditCard", method = RequestMethod.POST)

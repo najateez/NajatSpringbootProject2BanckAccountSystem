@@ -2,7 +2,9 @@ package com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSyste
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+//@EnableScheduling //-> for CRON
 @SpringBootApplication
 public class NajatSpringbootP2BankAccountSystemApplication {
 

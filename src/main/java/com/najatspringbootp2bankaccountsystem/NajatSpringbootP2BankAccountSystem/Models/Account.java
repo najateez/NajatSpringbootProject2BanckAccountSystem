@@ -18,7 +18,8 @@ public class Account {
     private Integer id;
     private Long accountNumber;
     private Double balance;
-    private String accountType;
+    private String accountType; // accountType: can be Savings or Checking
+    private Double interestRate; //i added this column to calculate interest (balance * interestRate)
 
  /*   @OneToMany(mappedBy = "account") //one account, many transactions
     private List<Transactions> transactions; */

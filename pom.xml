@@ -61,14 +61,11 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.7.11</version>
 		</dependency>
+		<!-- for setter and getter -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
 
 		<!-- adding dependencies required-->
 
@@ -88,6 +85,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency> -->
+
+      <!-- for NotFoundException -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<!--<version>2.1.1</version>-->
+		</dependency>
 
 	</dependencies>
 
