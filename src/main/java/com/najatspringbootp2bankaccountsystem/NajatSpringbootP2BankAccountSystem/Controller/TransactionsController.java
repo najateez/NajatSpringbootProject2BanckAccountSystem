@@ -6,6 +6,7 @@ import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Services.LoanService;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Services.TransactionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -53,5 +54,29 @@ public class TransactionsController {
         return transactionsService.calculateTransactionFee(transaction);
     }
 
+    //5.Generate a report of all transactions within a specific time period.
+    //exp: localhost:8080/transactions/generateReport?startDate=2000-11-11&endDate=2023-12-12.
+    /* the information record from db of tables transactions, account, customer will appear between these 2
+       dates: startDate and endDate -> depend of transactionsDate column in db.
+     */
+    @GetMapping("transactions/generateReport")
+    public ResponseEntity<List<Transactions>> generateReport(
+            @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
+            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
+        List<Transactions> transactions = transactionsService.getTransactionsByDateRange(startDate, endDate);
+        return new ResponseEntity<>(transactions, HttpStatus.OK);
+    }
 
+    //6.Reverse a transaction in case of an error.
+    //exp: localhost:8080/transactions/reverseTransaction?transactionId=3
+    //will post the result in new row in db table transactions.
+    @PostMapping("transactions/reverseTransaction")
+    public ResponseEntity<Transactions> reverseTransaction(@RequestParam Integer transactionId) {
+        try {
+            Transactions reverseTransaction = transactionsService.reverseTransaction(transactionId);
+            return ResponseEntity.ok(reverseTransaction);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

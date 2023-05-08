@@ -18,6 +18,7 @@ public class Loan {
     private Integer id;
     private Double loanAmount;
     private Boolean status;
+    private Double creditScore; //i added this column to solve this Question: Approve or reject a credit card application based on the customer's creditworthiness.
 
     @ManyToOne //many loan, one customer
     @JoinColumn(name= "customer_id" , referencedColumnName = "id")

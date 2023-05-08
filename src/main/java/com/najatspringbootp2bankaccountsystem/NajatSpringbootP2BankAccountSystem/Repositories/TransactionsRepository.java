@@ -26,6 +26,13 @@ public interface TransactionsRepository extends CrudRepository<Transactions, Int
     //2.Retrieve the details of a specific transaction.
     Transactions findById(int transactionId);
 
+    //5.Generate a report of all transactions within a specific time period.
+    //these startDate and endDate is for transactionsDate in db.
+    List<Transactions> findAllByTransactionDateBetween(Date startDate, Date endDate);
+
+    //6.Reverse a transaction in case of an error.
+    Transactions save(Transactions transaction);
+
 
     
 }

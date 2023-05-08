@@ -39,4 +39,26 @@ public class LoanService {
         loan.setLoanAmount(loanAmount);
         return loanRepository.save(loan);
     }
+
+    //3.Approve or reject a credit card application based on the customer's creditworthiness
+    public void approveOrRejectLoanApplication(Integer customerId, Double creditScore, Double loanAmount) {
+
+        Customer customer = customerRepository.findById(customerId).orElseThrow();
+
+        if (creditScore >= 700) {
+            Loan loan = new Loan();
+            loan.setCustomer(customer);
+            loan.setCreditScore(creditScore);
+            loan.setLoanAmount(loanAmount);
+            loan.setStatus(true); //it means approved.
+            loanRepository.save(loan);
+        } else {
+            Loan loan = new Loan();
+            loan.setCustomer(customer);
+            loan.setCreditScore(creditScore);
+            loan.setStatus(false); //it means rejected.
+            loan.setLoanAmount(loanAmount);
+            loanRepository.save(loan);
+        }
+        }
 }
