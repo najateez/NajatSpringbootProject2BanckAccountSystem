@@ -19,6 +19,7 @@ public class Loan {
     private Double loanAmount;
     private Boolean status;
     private Double creditScore; //i added this column to solve this Question: Approve or reject a credit card application based on the customer's creditworthiness.
+    private Double interestRate; //added to calculate interest of (loan entity Question)
 
     @ManyToOne //many loan, one customer
     @JoinColumn(name= "customer_id" , referencedColumnName = "id")
