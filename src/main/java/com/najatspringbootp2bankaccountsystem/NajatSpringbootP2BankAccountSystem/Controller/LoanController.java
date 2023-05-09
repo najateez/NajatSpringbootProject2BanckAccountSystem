@@ -37,6 +37,11 @@ public class LoanController {
     public void approveOrRejectLoanApplication(@RequestParam Integer customerId, @RequestParam Double creditScore, @RequestParam Double loanAmount) {
         loanService.approveOrRejectLoanApplication(customerId, creditScore, loanAmount);
     }
+    @PostMapping("loan/approveOrRejectLoanApplication")
+    public void approveOrRejectLoanApplication(@RequestParam Integer customerId, @RequestParam Double creditScore, @RequestParam Double loanAmount) {
+        loanService.approveOrRejectLoanApplication(customerId, creditScore, loanAmount);
+    }
+
 
     //4.Calculate the interest on the loan and update the balance accordingly.
     //exp: localhost:8080/loan/calculateLoanInterest?loanId=2
