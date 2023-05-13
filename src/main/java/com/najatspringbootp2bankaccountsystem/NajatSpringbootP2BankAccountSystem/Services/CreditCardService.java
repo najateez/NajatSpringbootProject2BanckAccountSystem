@@ -42,7 +42,7 @@ public class CreditCardService {
     }
 
     //3.Approve or reject a credit card application based on the customer's creditworthiness.
-    public void approveOrRejectLoanApplication(Integer customerId, Double creditScore, Double income) {
+    public void approveOrRejectCreditCardApplication(Integer customerId, Double creditScore, Double income) {
 
         Customer customer = customerRepository.findById(customerId).orElseThrow();
 

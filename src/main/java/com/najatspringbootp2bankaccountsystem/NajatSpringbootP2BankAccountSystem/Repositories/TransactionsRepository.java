@@ -34,6 +34,11 @@ public interface TransactionsRepository extends CrudRepository<Transactions, Int
     Transactions save(Transactions transaction);
 
 
+ /*   @Query("SELECT s from Transactions s")
+    List<Transactions> getAllTransactions(); */
+
+
+
     
 }
 

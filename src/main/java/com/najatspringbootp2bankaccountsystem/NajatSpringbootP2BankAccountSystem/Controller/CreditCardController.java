@@ -29,9 +29,9 @@ public class CreditCardController {
 
     //3.Approve or reject a credit card application based on the customer's creditworthiness
     //exp: localhost:8080/creditCard/approveOrRejectLoanApplication?customerId=4&creditScore=880&income=110.6
-    @PostMapping("creditCard/approveOrRejectLoanApplication")
-    public void approveOrRejectLoanApplication(@RequestParam Integer customerId, @RequestParam Double creditScore, @RequestParam Double income) {
-        creditCardService.approveOrRejectLoanApplication(customerId, creditScore, income);
+    @PostMapping("creditCard/approveOrRejectCreditCardApplication")
+    public void approveOrRejectCreditCardApplication(@RequestParam Integer customerId, @RequestParam Double creditScore, @RequestParam Double income) {
+        creditCardService.approveOrRejectCreditCardApplication(customerId, creditScore, income);
     }
 
     //4.Allow the customer to make payments towards their credit card balance.

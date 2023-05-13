@@ -67,7 +67,7 @@ public class AccountController {
     //5. Generate a monthly statement for the account.
     //Transactions for an account in a month
     //get all transactions for a specific account within a specific month.
-    //exp: localhost:8080/account/getAccountBalanceForMonth?id=1&year=2023&month=05
+    //exp: localhost:8080/account/getAccountBalanceForMonth?accountId=1&year=2023&month=05
     @GetMapping("account/getAccountBalanceForMonth")
     public ResponseEntity<Double> getAccountBalanceForMonth(@RequestParam Integer accountId, @RequestParam Integer year, @RequestParam Integer month) {
         Double transaction_amount = accountService.getAccountBalanceForMonth(accountId, year, month);

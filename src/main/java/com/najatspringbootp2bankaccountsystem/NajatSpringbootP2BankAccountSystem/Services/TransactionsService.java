@@ -61,7 +61,7 @@ public class TransactionsService {
         should print full details information record from tables transactions,account,customer only which
         has transactionDate between 1990-11-11 and 1997-12-12 .
      */
-    public List<Transactions> getTransactionsByDateRange(Date startDate, Date endDate) {
+    public List<Transactions> findAllByTransactionDateBetween(Date startDate, Date endDate) {
         return transactionsRepository.findAllByTransactionDateBetween(startDate, endDate);
     }
 

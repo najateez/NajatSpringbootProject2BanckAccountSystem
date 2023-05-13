@@ -70,11 +70,11 @@
 		<!-- adding dependencies required-->
 
 		<!-- for Jasper reports -->
-	<!--	<dependency>
+		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.20.1</version>
-		</dependency>-->
+		</dependency>
 		<!-- for sending email -->
 		<!--<dependency>
 			<groupId>org.springframework.boot</groupId>

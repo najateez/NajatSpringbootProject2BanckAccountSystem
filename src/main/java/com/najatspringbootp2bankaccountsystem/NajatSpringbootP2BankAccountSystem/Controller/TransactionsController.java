@@ -63,7 +63,7 @@ public class TransactionsController {
     public ResponseEntity<List<Transactions>> generateReport(
             @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
             @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endDate) {
-        List<Transactions> transactions = transactionsService.getTransactionsByDateRange(startDate, endDate);
+        List<Transactions> transactions = transactionsService.findAllByTransactionDateBetween(startDate, endDate);
         return new ResponseEntity<>(transactions, HttpStatus.OK);
     }
 
