@@ -24,57 +24,57 @@ class CustomerControllerTest {
     }
 
     @Test
-    void getUpdateCustomerById() {
+    void updateCustomerEmailOrPhoneById() {
 
-        customerController.getUpdateCustomerById(1, "Areen", 91234567, "areen@a.com");
+        customerController.updateCustomerEmailOrPhoneById(1, 998, "areenhmm@a.com");
     }
 
     @Test
-    void getCustomerAccounts() {
+    void customersAccountInformation() {
 
-        customerController.getCustomerAccounts(1);
+        customerController.customersAccountInformation(1);
     }
 
     @Test
-    void applyForLoan() {
+    void applyForANewLoan() {
     //    customerController.applyForLoan(1,33.2);
     }
 
     @Test
-    void applyForCreditCard() {
+    void applyForANewCreditCard() {
       //  customerController.applyForCreditCard();
     }
 
     @Test
-    void getStatusAllActiveLoans() {
+    void getStatusAllActiveLoansForACustomer() {
 
-        List<Loan> activeLoans = customerController.getStatusAllActiveLoans();
+        List<Loan> activeLoans = customerController.getStatusAllActiveLoansForACustomer();
         assertEquals(7770.55, activeLoans.get(0).getLoanAmount());
     }
 
     @Test
-    void getStatusAllInActiveLoans() {
+    void getStatusAllInActiveLoansForACustomer() {
 
-        List<Loan> inActiveLoans = customerController.getStatusAllInActiveLoans();
+        List<Loan> inActiveLoans = customerController.getStatusAllInActiveLoansForACustomer();
         assertEquals(789005, inActiveLoans.get(1).getLoanAmount());
     }
 
     @Test
-    void getStatusAllActiveCreditCard() {
-        List<CreditCard> activeCreditCard = customerController.getStatusAllActiveCreditCard();
+    void getStatusAllActiveCreditCardForACustomer() {
+        List<CreditCard> activeCreditCard = customerController.getStatusAllActiveCreditCardForACustomer();
         assertEquals(789005, activeCreditCard.get(1).getCreditCardNumber());
     }
 
     @Test
-    void getStatusAllInActiveCreditCard() {
-        List<CreditCard> inActiveCreditCard = customerController.getStatusAllInActiveCreditCard();
+    void getStatusAllInActiveCreditCardForACustomer() {
+        List<CreditCard> inActiveCreditCard = customerController.getStatusAllInActiveCreditCardForACustomer();
         assertEquals(9112233, inActiveCreditCard.get(2).getCreditCardNumber());
     }
 
     @Test
-    void getTransactionsByCustomerId() {
+    void customersTransactionsHistoryAcrossAllTheirAccountsByAccountId() {
 
-       List<Transactions> customer= customerController.getTransactionsByCustomerId(2);
-        assertEquals(181.5, customer.get(0).getTransactionAmount());
+       List<Transactions> account= customerController.customersTransactionsHistoryAcrossAllTheirAccountsByAccountId(2);
+        assertEquals(181.5, account.get(0).getTransactionAmount());
     }
 }

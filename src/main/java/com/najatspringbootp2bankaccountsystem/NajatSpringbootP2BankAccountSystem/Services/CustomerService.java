@@ -38,16 +38,16 @@ public class CustomerService {
     }
 
     //2.Update the customer information, such as their email or phone number.
-    public void getUpdateCustomerById(Integer id, String name, Integer phoneNumber, String email) {
+    public void updateCustomerEmailOrPhoneById(Integer id,Integer phoneNumber, String email) {
 
-        customerRepository.getUpdateCustomerById(id, name, phoneNumber, email);
+        customerRepository.updateCustomerEmailOrPhoneById(id,phoneNumber, email);
     }
 
     //3.Retrieve the customer's account information, including all their accounts and their current balances.
     /* if you give correct customer_id which has (fk) with account table will show details. if no
     customer_id in account table will show empty. if give wrong input of customer_id will show error.
      */
-    public List<Account> getCustomerAccounts(Integer customerId) {
+    public List<Account> customersAccountInformation(Integer customerId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
         List<Account> accounts = accountRepository.findByCustomerId(customerId);
@@ -56,32 +56,32 @@ public class CustomerService {
 
     //5.View the status of their loan or credit card application, if active or inActive.
     //getStatusAllActiveLoans.
-    public List<Loan> getStatusAllActiveLoans() {
+    public List<Loan> getStatusAllActiveLoansForACustomer() {
 
-        return loanRepository.getStatusAllActiveLoans();
+        return loanRepository.getStatusAllActiveLoansForACustomer();
     }
 
     // getAllNotActiveLoans :-
-    public List<Loan> getStatusAllInActiveLoans() {
+    public List<Loan> getStatusAllInActiveLoansForACustomer() {
 
-        return loanRepository.getStatusAllInActiveLoans();
+        return loanRepository.getStatusAllInActiveLoansForACustomer();
     }
 
     //getStatusAllActiveCreditCard.
-    public List<CreditCard> getStatusAllActiveCreditCard() {
+    public List<CreditCard> getStatusAllActiveCreditCardForACustomer() {
 
-        return creditCardRepository.getStatusAllActiveCreditCard();
+        return creditCardRepository.getStatusAllActiveCreditCardForACustomer();
     }
 
     // getAllNotActiveCreditCard :-
-    public List<CreditCard> getStatusAllInActiveCreditCard() {
+    public List<CreditCard> getStatusAllInActiveCreditCardForACustomer() {
 
-        return creditCardRepository.getStatusAllInActiveCreditCard();
+        return creditCardRepository.getStatusAllInActiveCreditCardForACustomer();
     }
 
     //6.Retrieve the customer's transaction history across all their accounts.
-    public List<Transactions> getTransactionsByCustomerId(Integer customerId) {
-        return transactionsRepository.findByAccountId(customerId);
+    public List<Transactions> customersTransactionsHistoryAcrossAllTheirAccountsByAccountId(Integer accountId) {
+        return transactionsRepository.findByAccountId(accountId);
     }
 
 }

@@ -17,13 +17,13 @@ import java.util.Optional;
 public interface LoanRepository extends CrudRepository<Loan, Integer> {
 
     //5.View the status of their loan or credit card application, if active or inActive.
-    //getStatusAllActiveLoans
+    //getStatusAllActiveLoansForACustomer
     @Query(value = "SELECT s from Loan s where s.status = true")
-    List<Loan> getStatusAllActiveLoans();
+    List<Loan> getStatusAllActiveLoansForACustomer();
 
     //getStatusAllNotActiveLoans :-
     @Query(value = "SELECT s from Loan s where s.status = false")
-    List<Loan> getStatusAllInActiveLoans();
+    List<Loan> getStatusAllInActiveLoansForACustomer();
 
     //5.Allow the customer to make payments towards the loan balance.
     @Transactional

@@ -19,23 +19,22 @@ import java.util.Optional;
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 
     //3.Update the account balance when a transaction is made.
-    // getUpdateBalanceById
+    //updateBalanceById
     @Modifying
     @Transactional
     @Query(value = "UPDATE Account s SET s.balance=:balance WHERE s.id =:id")
-    void getUpdateBalanceById(@Param("id") Integer id, @Param("balance") Double balance);
+    void updateBalanceById(@Param("id") Integer id, @Param("balance") Double balance);
 
     //2.Retrieve the account balance for a specific account.
     //getBalanceByAccountNumber
     @Query(value = "SELECT s from Account s where s.accountNumber =:accountNumber")  // :accountNumber -> for input
     Account getBalanceByAccountNumber(@Param("accountNumber") Long accountNumber);
 
-    //5. Generate a monthly statement for the account.
-    //Transactions for an account in month
-    //get all transactions for a specific account within a specific month.
+    //5.Generate a monthly statement for the account.
+    //take as input month and year from transaction_date and account_id from transactions table, will give result balance from account table.
     @Query("SELECT t FROM Transactions t WHERE t.account.id = :accountId AND YEAR(t.transactionDate) = :year AND MONTH(t.transactionDate) = :month")
-    List<Transactions> findTransactionsByAccountAndMonth(@Param("accountId") Integer accountId, @Param("year") Integer year, @Param("month") Integer month);
+    List<Transactions> generateAMonthlyStatementForTheAccount(@Param("accountId") Integer accountId, @Param("year") Integer year, @Param("month") Integer month);
 
-    //3.Retrieve the customer's account information, including all their accounts and their current balances.
+    //3.Retrieve the customer's account information, including all their accounts and their current balances. (for customer entity).
     List<Account> findByCustomerId(Integer customerId);
 }

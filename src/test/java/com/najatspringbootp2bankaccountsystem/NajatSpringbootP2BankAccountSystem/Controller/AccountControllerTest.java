@@ -23,9 +23,9 @@ class AccountControllerTest {
     }
 
     @Test
-    void getUpdateBalanceById() {
+    void updateBalanceById() {
 
-        accountController.getUpdateBalanceById(2, 88.1);
+        accountController.updateBalanceById(2, 1.2);
     }
 
     @Test
@@ -34,18 +34,18 @@ class AccountControllerTest {
     }
 
     @Test
-    void getAccountHistory() throws Exception {
-        List<Transactions> accountHistory= accountController.getAccountHistory(4); //account_id
+    void retrieveTheAccountHistoryIncludingAllTransactions() throws Exception {
+        List<Transactions> accountHistory= accountController.retrieveTheAccountHistoryIncludingAllTransactions(4); //account_id
         assertEquals(727.8, accountHistory.get(0).getTransactionAmount()); //first 4
     }
 
     @Test
-    void getAccountInterest() {
-        accountController.getAccountInterest(1);
+    void calculateTheInterestOnTheAccountBalance() {
+        accountController.calculateTheInterestOnTheAccountBalance(1);
     }
 
     @Test
-    void getAccountBalanceForMonth() {
+    void generateAMonthlyStatementForTheAccount() {
       //  accountController.getAccountBalanceForMonth(1,1996,05);
     }
 }

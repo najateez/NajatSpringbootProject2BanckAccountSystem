@@ -2,6 +2,8 @@ package com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSyste
 
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.DTO.AllLoanBalancesAndPaymentsDTO;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.DTO.AllTransactionsWithTimePeriodDTO;
+import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.DTO.MonthlyStatementForTheAccountDTO;
+import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Account;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Loan;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Models.Transactions;
 import com.najatspringbootp2bankaccountsystem.NajatSpringbootP2BankAccountSystem.Repositories.AccountRepository;
@@ -25,6 +27,8 @@ public class JasperReportService {
     TransactionsRepository transactionsRepository;
     @Autowired
     LoanRepository loanRepository;
+    @Autowired
+    AccountRepository accountRepository;
 
     public static final String pathToReports = "C:\\Users\\Acer\\intellijIdea-workspace\\NajatSpringbootP2BankAccountSystem\\JasperReports";
 
@@ -94,6 +98,30 @@ public class JasperReportService {
     //------------------------------------------------------------
 
     //MonthlyStatementForTheAccount Report:-
+    //take as input month and year from transaction_date and account_id from transactions table, will give result balance from account table.
+    public static final String pathToReports2 = "C:\\Users\\Acer\\intellijIdea-workspace\\NajatSpringbootP2BankAccountSystem\\JasperReports";
+
+    public String generateAMonthlyStatementForTheAccount(Integer accountId,Integer year,Integer month) throws FileNotFoundException, JRException {
+
+        List<Transactions> transactionsList = accountRepository.generateAMonthlyStatementForTheAccount(accountId,year,month);
+        List<MonthlyStatementForTheAccountDTO> monthlyStatementForTheAccountDTOData = new ArrayList<>();
+
+        // Calculate the running balance for each transaction
+        Double balance = 0.0;
+        for (Transactions acc : transactionsList) {
+            balance += acc.getAccount().getBalance();
+            monthlyStatementForTheAccountDTOData.add(new MonthlyStatementForTheAccountDTO(acc.getTransactionDate(), balance, accountId));
+        }
+
+        File file = ResourceUtils.getFile("classpath:MonthlyStatementForTheAccountReport_Jaspersoft.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(monthlyStatementForTheAccountDTOData);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Najat Tech Mahindra");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,paramters , dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports2+"\\MonthlyStatementForTheAccountReport_ForAccountEntity.pdf");
+        return "Report generated : " + pathToReports2+"\\MonthlyStatementForTheAccountReport_ForAccountEntity.pdf";
+    }
 
 
 

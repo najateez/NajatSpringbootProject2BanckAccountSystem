@@ -33,8 +33,8 @@ public class LoanService {
         loanRepository.save(loanObj);
     }
 
-    // 4.Apply for a new loan or credit card
-    public Loan applyForLoan(Integer customerId, Double loanAmount) {
+    // 4.Apply for a new loan or credit card.
+    public Loan applyForANewLoan(Integer customerId, Double loanAmount) {
         Customer customer = customerRepository.findById(customerId).orElse(null);
         if (customer == null) {
             throw new RuntimeException("Customer not found");

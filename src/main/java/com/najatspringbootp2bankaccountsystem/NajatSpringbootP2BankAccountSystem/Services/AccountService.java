@@ -31,12 +31,14 @@ public class AccountService {
     }
 
     //3.Update the account balance when a transaction is made.
-    public void getUpdateBalanceById(Integer id,Double balance) {
+    //updateBalanceById
+    public void updateBalanceById(Integer id,Double balance) {
 
-        accountRepository.getUpdateBalanceById(id,balance);
+        accountRepository.updateBalanceById(id,balance);
     }
 
     //2.Retrieve the account balance for a specific account.
+    //getBalanceByAccountNumber
     public Account getBalanceByAccountNumber(Long accountNumber) {
         Account account = accountRepository.getBalanceByAccountNumber(accountNumber);
         return account;
@@ -44,7 +46,7 @@ public class AccountService {
 
     //6.Retrieve the account history, including all transactions.
     //getAllTransactionsByAccountId
-    public List<Transactions> getAccountHistory(@RequestParam Integer accountId) throws Exception { //from transactionsRepository
+    public List<Transactions> retrieveTheAccountHistoryIncludingAllTransactions(@RequestParam Integer accountId) throws Exception { //from transactionsRepository
 
         Optional<Account> accountOptional = accountRepository.findById(accountId); //from accountRepository
 
@@ -61,7 +63,8 @@ public class AccountService {
     }
 
     //4. Calculate the interest on the account balance.
-    public Double calculateInterest(Integer id) {
+    //interest = balance * interestRate
+    public Double calculateTheInterestOnTheAccountBalance(Integer id) {
         Account account = accountRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Account not found"));
 
@@ -72,18 +75,14 @@ public class AccountService {
     }
 
     //5. Generate a monthly statement for the account.
-    //Transactions for an account in month
-    /* look into Transactions table, give account id, with transactionsDate its year and month, will give
-       the result of transactions amount from column of transactions_amount. if you give any wrong input
-       in postman the result will be zero.
-     */
-    public Double getAccountBalanceForMonth(Integer accountId, Integer year, Integer month) {
-        List<Transactions> transactions = accountRepository.findTransactionsByAccountAndMonth(accountId, year, month);
-        Double transaction_amount = 0.0;
-        for (Transactions transaction : transactions) {
-            transaction_amount += transaction.getTransactionAmount();
+    //take as input month and year from transaction_date and account_id from transactions table, will give result balance from account table.
+    public Double generateAMonthlyStatementForTheAccount(Integer accountId, Integer year, Integer month) {
+        List<Transactions> transactionsList = accountRepository.generateAMonthlyStatementForTheAccount(accountId, year, month);
+        Double balance = 0.0;
+        for (Transactions acc : transactionsList) {
+            balance += acc.getAccount().getBalance();
         }
-        return transaction_amount;
+        return balance;
     }
 
 

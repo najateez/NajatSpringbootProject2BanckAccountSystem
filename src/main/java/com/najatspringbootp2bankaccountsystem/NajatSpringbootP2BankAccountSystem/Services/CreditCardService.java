@@ -30,7 +30,7 @@ public class CreditCardService {
     }
 
     // 4.Apply for a new loan or credit card.
-    public CreditCard applyForCreditCard(Integer customerId, Long creditCardNumber) {
+    public CreditCard applyForANewCreditCard(Integer customerId, Long creditCardNumber) {
         Customer customer = customerRepository.findById(customerId).orElse(null);
         if (customer == null) {
             throw new RuntimeException("Customer not found");

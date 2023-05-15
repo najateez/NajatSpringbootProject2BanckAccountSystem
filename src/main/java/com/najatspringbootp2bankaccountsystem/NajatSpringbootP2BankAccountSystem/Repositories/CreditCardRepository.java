@@ -18,13 +18,13 @@ import java.util.Optional;
 public interface CreditCardRepository extends CrudRepository<CreditCard, Integer> {
 
     //5.View the status of their loan or credit card application, if active or inActive.
-    //getStatusAllActiveCreditCard
+    //getStatusAllActiveCreditCardForACustomer
     @Query(value = "SELECT s from CreditCard s where s.status = true")
-    List<CreditCard> getStatusAllActiveCreditCard();
+    List<CreditCard> getStatusAllActiveCreditCardForACustomer();
 
     //getStatusAllNotActiveCreditCard :-
     @Query(value = "SELECT s from CreditCard s where s.status = false")
-    List<CreditCard> getStatusAllInActiveCreditCard();
+    List<CreditCard> getStatusAllInActiveCreditCardForACustomer();
 
     //4.Allow the customer to make payments towards their credit card balance.
     @Transactional

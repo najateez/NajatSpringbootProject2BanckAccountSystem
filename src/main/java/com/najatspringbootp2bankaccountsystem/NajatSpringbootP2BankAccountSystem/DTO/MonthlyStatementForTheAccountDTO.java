@@ -12,5 +12,13 @@ import java.util.Date;
 @Data
 public class MonthlyStatementForTheAccountDTO {
 
+    private Date transactionDate;
+    private Double balance;
+    private Integer accountId;
 
+    public MonthlyStatementForTheAccountDTO(Date transactionDate, Double balance, Integer accountId) {
+        this.transactionDate = transactionDate;
+        this.balance = balance;
+        this.accountId = accountId;
+    }
 }

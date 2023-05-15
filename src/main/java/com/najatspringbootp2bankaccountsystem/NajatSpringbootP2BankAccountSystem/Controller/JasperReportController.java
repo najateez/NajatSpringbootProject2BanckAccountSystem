@@ -26,6 +26,8 @@ public class JasperReportController {
     @Autowired
     JasperReportService jasperReportService;
 
+    //Generate a report of all transactions within a specific time period.
+
     @GetMapping("jasper/generateTransactionsReport")
     public ResponseEntity<String> generateTransactionsReport(
             @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
@@ -51,7 +53,21 @@ public class JasperReportController {
     //-------------------------------------------------------------------------
 
     //exp: Generate a monthly statement for the account Report:-
-
+    //take as input month and year from transaction_date and account_id from transactions table, will give result balance from account table.
+    //exp: localhost:8080/jasper/findTransactionsByAccountAndMonth?id=2&year=1996&month=05
+    @GetMapping("jasper/generateAMonthlyStatementForTheAccount")
+    public ResponseEntity<String> generateAMonthlyStatementForTheAccount(
+            @RequestParam("id") Integer accountId,
+            @RequestParam("year") Integer year,
+            @RequestParam("month") Integer month) {
+        try {
+            String reportPath = jasperReportService.generateAMonthlyStatementForTheAccount(accountId, year, month);
+            return ResponseEntity.ok(reportPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     }
 
 
