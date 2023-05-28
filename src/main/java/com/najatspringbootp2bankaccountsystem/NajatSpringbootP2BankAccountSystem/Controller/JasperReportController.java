@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,6 @@ public class JasperReportController {
     JasperReportService jasperReportService;
 
     //Generate a report of all transactions within a specific time period.
-
     @GetMapping("jasper/generateTransactionsReport")
     public ResponseEntity<String> generateTransactionsReport(
             @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startDate,
